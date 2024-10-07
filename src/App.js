@@ -5,6 +5,15 @@ import Header from './Components/Header';
 import Home from './Components/Home';
 import Signup from './Components/SignUp';
 import SignIn from './Components/SignIn';
+import CustomerDashboard from './Components/CustomerDashboard';
+import AdminDashboard from './Components/AdminDashboard';
+import { UserContextProvider } from './utils/UserContext';
+import LoanApply from './Components/LoanApply';
+import LoanApply2 from './Components/LoanApply2';
+import TransferMoney from './Components/TransferMoney';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+import OtherTransfer from './Components/OtherTransfer';
 // Header Component
 // const Header = () => {
 //   return (
@@ -27,10 +36,13 @@ import SignIn from './Components/SignIn';
 // Layout Component that contains the Header and Outlet
 const AppLayout = () => {
   return (
-    <div>
-      <Header /> {/* Always visible */}
-      <Outlet /> {/* This is where the Body component will render */}
+    <UserContextProvider>
+    <div className='App'>
+    <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
+        <Header /> {/* Always visible */}
+        <Outlet /> {/* This is where the Body component will render */}
     </div>
+    </UserContextProvider>
   );
 };
 
@@ -51,6 +63,26 @@ const appRouter = createBrowserRouter([
       {
         path:'/signIn',
         element: <SignIn />
+      },
+      {
+        path: '/CustomerDashboard',
+        element: <CustomerDashboard />
+      },
+      {
+        path:'/AdminDashboard',
+        element: <AdminDashboard />
+      },
+      {
+        path: '/loanApply',
+        element: <LoanApply2 />
+      },
+      {
+        path:'/transfer',
+        element: <TransferMoney />
+      },
+      {
+        path:'/othertransfer',
+        element: <OtherTransfer />
       }
     ],
   },

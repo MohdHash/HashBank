@@ -1,23 +1,63 @@
-import React, { useState } from'react';
+import React, { useState , useContext } from'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../utils/firebaseconfig.js';
 import '../STYLES/signIn.css';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../utils/UserContext.js';
+// import { handleLogin } from '../utils/handleLogin.js';
+
 const SignIn = ()=>{
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
     const navigate = useNavigate();
+    const { login } = useContext(UserContext);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+           const response =  await signInWithEmailAndPassword(auth, email, password);
+            const {uid} = response?.user;
+            console.log('User signed in:', uid);
+            handleLogin(uid);
             alert("User signed in successfully");
-            navigate('/customerDashboard');
+            navigate('/CustomerDashboard');
         } catch (error) {
             console.error('Error signing in:', error);
         }
         setEmail('');
         setPassword('');
+    }
+
+    const handleLogin = async (uid) => {
+        try {
+            const response = await fetch(`https://firestore.googleapis.com/v1/projects/hashbankk2/databases/(default)/documents/customers/${uid}`);
+        
+            if (!response.ok) {
+              throw new Error('Failed to fetch customer details');
+            }
+        
+            const data = await response.json();
+        
+            // Parse Firestore document structure to extract customer fields
+            const customerData = {
+              id: uid,
+              name: data.fields.name.stringValue,
+              email: data.fields.email.stringValue,
+              phone: data.fields.phone.stringValue,
+              address: data.fields.address.stringValue,
+              aadharCardUrl: data.fields.aadharCardUrl.stringValue,
+              balance: data.fields.balance.integerValue || data.fields.balance.doubleValue,
+              accounts: data.fields.accounts.arrayValue.values.map(acc => acc.mapValue.fields.accountNumber.integerValue), // array of account numbers
+            };
+            console.log(customerData);
+            // Use the login function from the CustomerContext to store customer details
+            
+            login(customerData); // Store customer data in context
+        
+            // Redirect to the dashboard after successful login
+          } catch (error) {
+            console.error('Error during login:', error.message);
+            alert('Login failed. Please try again.');
+          }
     }
 
     return(

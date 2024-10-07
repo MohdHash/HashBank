@@ -1,0 +1,112 @@
+/* General styling for the loan apply container */
+.loan-apply-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loan-apply-container h2, .loan-apply-container h3 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Button styling */
+  .loan-type-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .loan-type-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover effect with animation */
+  .loan-type-buttons button:hover {
+    background-color: white;
+    color: #007BFF;
+    border-color: #007BFF;
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Styling for form fields */
+  .loan-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .loan-form-container form label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .loan-form-container form input,
+  .loan-form-container form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  
+  .loan-form-container form input:focus,
+  .loan-form-container form select:focus {
+    outline: none;
+    border-color: #007BFF;
+  }
+  
+  /* Submit button styling */
+  .loan-submit-btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover effect on submit button */
+  .loan-submit-btn:hover {
+    background-color: #fff;
+    color: #28a745;
+    border: 2px solid #28a745;
+    box-shadow: 0 8px 15px rgba(40, 167, 69, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Add some animation when loading form */
+  .loan-form-container {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Styling for file upload inputs */
+  input[type="file"] {
+    border: none;
+    font-size: 16px;
+  }
+  

@@ -7,12 +7,12 @@ import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB7G0svo3uiFxAbAGD_wnIXd-077AY4ofo",
-  authDomain: "hashbank-96ff2.firebaseapp.com",
-  projectId: "hashbank-96ff2",
-  storageBucket: "hashbank-96ff2.appspot.com",
-  messagingSenderId: "1077537427140",
-  appId: "1:1077537427140:web:bb24e51e0d5c47b7d18391"
+  apiKey: "AIzaSyAL_gZCPCEU7AV22p3yUHAJfBh_UkDreD0",
+  authDomain: "hashbankk2.firebaseapp.com",
+  projectId: "hashbankk2",
+  storageBucket: "hashbankk2.appspot.com",
+  messagingSenderId: "457638546313",
+  appId: "1:457638546313:web:8689f5295d86be16bcef58"
 };
 
 // Initialize Firebase

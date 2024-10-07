@@ -15,7 +15,7 @@ const Signup = () => {
     password: '',
     panCard: null,
     aadharCard: null,
-    initialBalance: '',
+    balance: '',
   });
 
   const [panCardUrl, setPanCardUrl] = useState('');
@@ -42,7 +42,7 @@ const Signup = () => {
         password: '',
         panCard: null,
         aadharCard: null,
-        initialBalance: '',
+        balance: '',
       });
     }
   }, [submitted]);
@@ -67,13 +67,13 @@ const Signup = () => {
       const aadharCardUrl = await getDownloadURL(aadharCardSnapshot.ref);
       setAadharCardUrl(aadharCardUrl);
       
-      const passportPicRef = ref(storage , `passportPic/${formData.PassportPic.name}`);
-      const passportPicSnapshot = await uploadBytes(passportPicRef,formData.passportPic);
+      const passportPicRef = ref(storage , `passportPics/${formData.PassportPic.name}`);
+      const passportPicSnapshot = await uploadBytes(passportPicRef,formData.PassportPic);
       const passportPicUrl = await getDownloadURL(passportPicSnapshot.ref);
       setPasswordPicUrl(passportPicUrl);
 
       // Firestore REST API: Add account request to Firestore using fetch (AJAX)
-      await fetch(`https://firestore.googleapis.com/v1/projects/hashbank-96ff2/databases/(default)/documents/accountRequest/${userId}`, {
+      await fetch(`https://firestore.googleapis.com/v1/projects/hashbankk2/databases/(default)/documents/accountRequest/${userId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -87,8 +87,8 @@ const Signup = () => {
             panCardUrl: { stringValue: panCardUrl },
             aadharCardUrl: { stringValue: aadharCardUrl },
             passportPicUrl:{stringValue: passportPicUrl},
-            status : { booleanValue : false},
-            initialBalance: { integerValue: formData.initialBalance },
+            status : { stringValue : 'waiting'},
+            balance: { integerValue: formData.balance },
           },
         }),
       });
@@ -167,7 +167,7 @@ const Signup = () => {
           required
           className="file-input"
         />
-        <label htmlFor="aadharCard">Passport Size Photo (required):</label>
+        <label htmlFor="PassportPic">Passport Size Photo (required):</label>
         <input
           id='PassportPic'
           type="file"
@@ -178,10 +178,10 @@ const Signup = () => {
         />
         <input
           type="number"
-          name="initialBalance"
+          name="balance"
           placeholder="Initial Balance"
           onChange={handleInputChange}
-          value={formData.initialBalance}
+          value={formData.balance}
           required
           className="input-field"
         />

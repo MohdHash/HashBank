@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { styled } from "@mui/system"; // Import the styled utility
 import { useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../utils/UserContext";
 
 // Define custom HTML components with sx prop using the styled utility
 const AppBar = styled('div')(({ theme }) => ({
@@ -74,6 +75,7 @@ const Header = () => {
   const [menu, setMenu] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const {logout} = useContext(UserContext);
   const handleOpenMenu = (event, menu) => {
     setAnchorElement(event.currentTarget);
     setMenu(menu);
@@ -90,14 +92,24 @@ const Header = () => {
   };
 
   const handleLoginBtnClick = () => {
-    if (buttonText === "Sign in" ){
+    if (buttonText === "Sign In" ){
       navigate('/signIn');
-    }else if(buttonText === 'Login'){
+    }else if(buttonText === 'Sign Up'){
       navigate('/login');
+    }else if(buttonText === 'Logout' && (location.pathname !== '/login' || location.pathname !== '/')){
+      logout();
+      navigate('/');
     }
   }
 
-  const buttonText = location.pathname === '/login' ? 'Sign in' : 'Login';
+  let buttonText = "Sign Up";
+  if(location.pathname === '/login'){
+    buttonText = 'Sign In';
+  }else if(location.pathname === '/'){
+    buttonText = 'Sign Up';
+  }else{
+    buttonText = 'Logout';
+  }
 
   return (
     <AppBar>
