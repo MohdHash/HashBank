@@ -2,7 +2,7 @@ import { useState,useContext } from "react";
 import { styled } from "@mui/system"; // Import the styled utility
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../utils/UserContext";
-
+import banklogo from '../IMAGES/banklogo.png';
 // Define custom HTML components with sx prop using the styled utility
 const AppBar = styled('div')(({ theme }) => ({
   backgroundColor: 'lightblue',
@@ -102,6 +102,10 @@ const Header = () => {
     }
   }
 
+  const handleAdminBtnClick = () => {
+    navigate('/AdminLogin');
+  }
+
   let buttonText = "Sign Up";
   if(location.pathname === '/login'){
     buttonText = 'Sign In';
@@ -115,10 +119,15 @@ const Header = () => {
     <AppBar>
       <Toolbar>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img src="" alt="" style={{ width: 50, marginRight: 20 }} />
+          <img src={banklogo} alt="" style={{ width: 75 , height: 75 , marginRight: 20 }} />
           <SearchInput type="text" placeholder="Search" />
         </div>
-        <LoginButton onClick={handleLoginBtnClick}>{buttonText}</LoginButton>
+        <div style={{display: 'flex', alignItems:'center' , justifyContent:'space-evenly' , marginLeft:'80px'}}>
+          <LoginButton sx={{marginRight:'15px'
+          }} onClick={handleLoginBtnClick}>{buttonText}</LoginButton>
+          { location.pathname === '/login' &&  <LoginButton onClick={handleAdminBtnClick}>Admin</LoginButton> }
+        </div>
+        
       </Toolbar>
 
       <NavMenu>

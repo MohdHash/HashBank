@@ -4,11 +4,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // import SwipeableViews from 'react-swipeable-views'; // You need to install this package for swipeable views
 import { Footer } from './Footer'; // Assuming you have a Footer component already
 import bankingImage from '../IMAGES/bankingImage.jpeg';
+import bank2 from '../IMAGES/bank2.jpeg';
+import bank3 from '../IMAGES/bank3.jpeg';
 function Home() {
   const cards = [
     { title: 'Saving & Current Account', description: 'Details about our credit services', image: bankingImage },
-    { title: 'Internet Banking', description: 'Learn more about investment options', image: '/card2.jpg' },
-    { title: 'Investments', description: 'How to save with our accounts', image: '/card3.jpg' },
+    { title: 'Internet Banking', description: 'Learn more about investment options', image: bank2},
+    { title: 'Investments', description: 'How to save with our accounts', image: bank3 },
   ];
 
   return (
@@ -18,7 +20,7 @@ function Home() {
         {/* Left Side - Bank details */}
         <Grid2 item xs={12} md={6}>
           <Typography variant="h3" gutterBottom>
-            Welcome to Our Bank
+            Welcome to Our Hashbank
           </Typography>
           <Typography variant="body1" >
             We provide a range of financial services that help you manage your money efficiently. From saving and investing to borrowing and insuring, we have services tailored to fit your needs.
@@ -29,7 +31,7 @@ function Home() {
         </Grid2>
 
         {/* Right Side - Swipeable Cards */}
-        <Grid2 item xs={12} md={6}>
+        <Grid2 sx={{display:'flex' , flexDirection: 'row' , gap: 4 }} item xs={12} md={6}>
             {cards.map((card, index) => (
               <Card key={index} sx={{ marginBottom: 2 }}>
                 <CardMedia component="img" height="200" image={card.image} alt={card.title} />

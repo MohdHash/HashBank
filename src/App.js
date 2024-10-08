@@ -83,6 +83,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/othertransfer',
         element: <OtherTransfer />
+      },
+      {
+        path:'/AdminLogin',
+        element:<SignIn />
       }
     ],
   },

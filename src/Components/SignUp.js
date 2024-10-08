@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { auth } from '../utils/firebaseconfig.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { storage } from '../utils/firebaseconfig.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import '../STYLES/signUp.css';
 
@@ -93,7 +95,7 @@ const Signup = () => {
         }),
       });
 
-      alert("Signup successful, waiting for admin approval!");
+     toast("Sign up successfull , waiting for admin approval");
       setSubmitted(true); // trigger useEffect to clear form
     } catch (error) {
       console.error("Error signing up:", error);
