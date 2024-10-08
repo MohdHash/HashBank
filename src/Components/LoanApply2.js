@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { storage } from '../utils/firebaseconfig.js';
 import { UserContext } from '../utils/UserContext.js';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../STYLES/loanApply.css';
 
 const LoanApply2 = () => {
@@ -156,7 +158,7 @@ const LoanApply2 = () => {
         throw new Error('Failed to submit loan application');
       }
 
-      alert('Loan application submitted successfully!');
+      toast('Loan application submitted successfully!');
 
       // Reset form after submission
       setFormData({
@@ -184,7 +186,7 @@ const LoanApply2 = () => {
       setSelectedTenure('');
     } catch (error) {
       console.error('Error submitting loan application:', error);
-      alert('Error submitting loan application. Please try again.');
+      toast('Error submitting loan application. Please try again.');
     }
   };
 
