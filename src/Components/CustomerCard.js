@@ -4,22 +4,22 @@ const CustomerCard = ({request,refreshRequest}) => {
     const [action , setAction] = useState(null);
     console.log(request.name.split('/').pop());
     console.log(request);
-    const sendEmail = async (emailData) => {
-        try{
-            const response = await fetch('http://localhost:5000/send-email', {
-                method:'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body : JSON.stringify(emailData),
-            });
+    // const sendEmail = async (emailData) => {
+    //     try{
+    //         const response = await fetch('http://localhost:5000/send-email', {
+    //             method:'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body : JSON.stringify(emailData),
+    //         });
 
-            const result = await response.json();
-            console.log("Email sendt" ,result.messageId);
-        }catch(error){
-            console.log("Error sending email", error);
-        }
-    }
+    //         const result = await response.json();
+    //         console.log("Email sendt" ,result.messageId);
+    //     }catch(error){
+    //         console.log("Error sending email", error);
+    //     }
+    // }
 
     const handleAction = async (docId , status) => {
         try {
@@ -42,21 +42,21 @@ const CustomerCard = ({request,refreshRequest}) => {
                 setAction(status);
                 if(status === 'approved'){
                     await moveToCustomersCollection(request,docId);
-                    await sendEmail({
-                        to : request.fields.email,
-                        subject : 'Account Approval',
-                        text : 'Your account request has been approved',
-                        html : '<p>Your account request has been approved.</p>',
-                    });
+                    // await sendEmail({
+                    //     to : request.fields.email,
+                    //     subject : 'Account Approval',
+                    //     text : 'Your account request has been approved',
+                    //     html : '<p>Your account request has been approved.</p>',
+                    // });
                     await deleteFromAccountRequest(request,docId);
                     refreshRequest();
                 }else if(status === 'rejected'){
-                    await sendEmail({
-                        to : request.fields.email,
-                        subject : 'Account Status',
-                        text : 'We regret to inform that your account has been rejected',
-                        html : '<p>We regret to inform that your account has been rejected. </p>',
-                    });
+                    // await sendEmail({
+                    //     to : request.fields.email,
+                    //     subject : 'Account Status',
+                    //     text : 'We regret to inform that your account has been rejected',
+                    //     html : '<p>We regret to inform that your account has been rejected. </p>',
+                    // });
                     await deleteFromAccountRequest(request,docId);
                     refreshRequest();
                 }
