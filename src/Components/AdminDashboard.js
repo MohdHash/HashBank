@@ -17,7 +17,7 @@ const AdminDashboard = () => {
                 console.error("Failed to fetch account request");
             }
         }catch (error){
-            console.error("Error fetching account request:" , error);
+            console.error("Error fetching the account request:" , error);
         }
     };
 
