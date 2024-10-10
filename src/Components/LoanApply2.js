@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { storage } from '../utils/firebaseconfig.js';
 import { UserContext } from '../utils/UserContext.js';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -12,6 +12,7 @@ const LoanApply2 = () => {
   const [interestRate, setInterestRate] = useState(null);
   
   const { user } = useContext(UserContext);
+  // eslint-disable-next-line
   const [bankAccountNumber, setBankAccountNumber] = useState(user.accounts[0]);
   console.log(user);
   const [formData, setFormData] = useState({
@@ -78,7 +79,7 @@ const LoanApply2 = () => {
       return { ...prev, fields: updatedFields };
     });
   };
-
+  // eslint-disable-next-line
   const handleLoanTypeChange = (loanType) => {
     setSelectedLoanType(loanType);
     setInterestRate(null); // Reset interest rate when loan type changes

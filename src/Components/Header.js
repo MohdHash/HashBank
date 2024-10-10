@@ -71,18 +71,18 @@ const MenuItem = styled('div')({
 });
 
 const Header = () => {
-  const [anchorElement, setAnchorElement] = useState(null);
+  // const [anchorElement, setAnchorElement] = useState(null);
   const [menu, setMenu] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const {logout} = useContext(UserContext);
   const handleOpenMenu = (event, menu) => {
-    setAnchorElement(event.currentTarget);
+    // setAnchorElement(event.currentTarget);
     setMenu(menu);
   };
 
   const handleCloseMenu = () => {
-    setAnchorElement(null);
+    // setAnchorElement(null);
     setMenu("");
   };
 

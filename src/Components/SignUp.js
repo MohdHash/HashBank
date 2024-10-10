@@ -19,9 +19,11 @@ const Signup = () => {
     aadharCard: null,
     balance: '',
   });
-
+  // eslint-disable-next-line
   const [panCardUrl, setPanCardUrl] = useState('');
+  // eslint-disable-next-line
   const [aadharCardUrl, setAadharCardUrl] = useState('');
+  // eslint-disable-next-line
   const [passportPicUrl , setPasswordPicUrl] = useState('')
   const [submitted, setSubmitted] = useState(false);
 

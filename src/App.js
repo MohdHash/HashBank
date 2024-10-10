@@ -8,7 +8,7 @@ import SignIn from './Components/SignIn';
 import CustomerDashboard from './Components/CustomerDashboard';
 import AdminDashboard from './Components/AdminDashboard';
 import { UserContextProvider } from './utils/UserContext';
-import LoanApply from './Components/LoanApply';
+// import LoanApply from './Components/LoanApply';
 import LoanApply2 from './Components/LoanApply2';
 import TransferMoney from './Components/TransferMoney';
 import { ToastContainer } from 'react-toastify';
