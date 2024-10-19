@@ -19,7 +19,7 @@ const SignIn = ()=>{
         try {
            const response =  await signInWithEmailAndPassword(auth, email, password);
             const {uid} = response?.user;
-            if(uid === 'HUaqyPNGwrPBJSnJVIW1qbvmV0v2'){
+            if(uid === 'MiZbX9Yfw1gmbyEUhxPM8Tzjtxq2'){
                 navigate('/AdminDashboard');
                 return;
             }
